@@ -13,6 +13,20 @@ Backpropagation and training of neural networks. Assumes basic knowledge of Pyth
 - [Jupyter notebook files](lectures/micrograd)
 - [micrograd Github repo](https://github.com/karpathy/micrograd)
 
+Note:
+
+1. Define `Value` Class
+    - 用`children` store previous operands
+    - `backward()`: call `_backward()` for each node in reversed topological order
+    - `+= grad` 而不是 `= grad (reset)` 避免 overwriting
+2. Calculate Gradients: by **calculation graph** and **chain rule**:
+    - multiplication: d * f = L => d.grad = f, f.grad = d
+    - addition: c + e = d => c.grad = e.grad = 1
+    - chain rule: dL / dc = (dL / dd) * (dd / dc) = f
+    - tanh: o = tanh(n), do / dn = 1 - o**2
+3. Enhance `Value` Class
+    - Change `__add__`, `__mul__`, `__mul__` 来支持 raw value (而不是 `Value` class)
+
 ---
 
 **Lecture 2: The spelled-out intro to language modeling: building makemore**
@@ -22,6 +36,18 @@ We implement a bigram character-level language model, which we will further comp
 - [YouTube video lecture](https://www.youtube.com/watch?v=PaCmpygFfXo)
 - [Jupyter notebook files](lectures/makemore/makemore_part1_bigrams.ipynb)
 - [makemore Github repo](https://github.com/karpathy/makemore)
+
+Note:
+
+1. Bigram: 通过前一个char预测下一个char
+    - 根据现有数据数 (prev_char, next_char) pairs 的 freq ，从而计算 distribution
+    - 用 `itos` 和 `stoi` convert between character and idx
+    - `torch.Generator().manual_seed` set seed to get reproducible results
+    - Broadcast 和 sum 要注意 dimension
+    - 对于没出现的组合：所有 count + 1，smoothier distribution, 相当于 mlp 里的 regularization
+2. Evaluation: log likelihood, loss function
+3. 单层 MLP:
+    - Bigram is not scalable (what if we want to predict next char by previous 10 chars, can't construct a count map anymore), MLP is more scalable and flexible
 
 ---
 
