@@ -13,7 +13,7 @@ Backpropagation and training of neural networks. Assumes basic knowledge of Pyth
 - [Jupyter notebook files](lectures/micrograd)
 - [micrograd Github repo](https://github.com/karpathy/micrograd)
 
-Note:
+Notes:
 
 1. Define `Value` Class
     - 用`children` store previous operands
@@ -37,7 +37,7 @@ We implement a bigram character-level language model, which we will further comp
 - [Jupyter notebook files](lectures/makemore/makemore_part1_bigrams.ipynb)
 - [makemore Github repo](https://github.com/karpathy/makemore)
 
-Note:
+Notes:
 
 1. Bigram: 通过前一个char预测下一个char
     - 根据现有数据数 (prev_char, next_char) pairs 的 freq ，从而计算 distribution
@@ -46,8 +46,8 @@ Note:
     - Broadcast 和 sum 要注意 dimension
     - 对于没出现的组合：所有 count + 1，smoothier distribution, 相当于 mlp 里的 regularization
 2. Evaluation: log likelihood, loss function
-3. 单层 MLP:
-    - Bigram is not scalable (what if we want to predict next char by previous 10 chars, can't construct a count map anymore), MLP is more scalable and flexible
+3. 单层 Neural Language Model:
+    - Bigram is not scalable (what if we want to predict next char by previous 10 chars, can't construct a count map anymore), Neural Language Model is more scalable and flexible
 
 ---
 
@@ -58,6 +58,11 @@ We implement a multilayer perceptron (MLP) character-level language model. In th
 - [YouTube video lecture](https://youtu.be/TCH_1BHY58I)
 - [Jupyter notebook files](lectures/makemore/makemore_part2_mlp.ipynb)
 - [makemore Github repo](https://github.com/karpathy/makemore)
+
+Notes:
+
+1. Split dataset: trani, validation (to tune hyperparameters), test
+2. Check overfitting and underfitting, tune learning rate
 
 ---
 
