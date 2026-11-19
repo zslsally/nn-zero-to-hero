@@ -74,6 +74,21 @@ We dive into some of the internals of MLPs with multiple layers and scrutinize t
 - [Jupyter notebook files](lectures/makemore/makemore_part3_bn.ipynb)
 - [makemore Github repo](https://github.com/karpathy/makemore)
 
+Notes:
+
+Techniques
+
+1. Initialization: kaiming init
+2. Batch Normalization: achieve unit guassian, running estimarion (close to true value if large batch size)
+    - Also: Group Normalization, Layer Normalization
+3. Value of nonlinearity layer (e.g. tanh)
+4. ResNet
+5. Modular
+6. Diagnostic tools: 3 graphs
+    - Forward
+    - Backward
+    - Update ratio
+
 ---
 
 **Lecture 5: Building makemore Part 4: Becoming a Backprop Ninja**
